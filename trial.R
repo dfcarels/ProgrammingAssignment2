@@ -1,6 +1,6 @@
 ## With the makeCacheMatrix function you can create a matrix object that 
 ## can cache its inverse. It contains a list of 4 functions: set, get, 
-## setinverse and getinverse .
+## setinverse and getinverse.
 
 makeCacheMatrix <- function(x = matrix()) {
         
@@ -19,7 +19,6 @@ makeCacheMatrix <- function(x = matrix()) {
              get = get,                
              setinverse = setinverse,  
              getinverse = getinverse)  
-        
 }
 
 
@@ -40,7 +39,15 @@ cacheSolve <- function(x, ...) {
         data <- x$get()
         inv <- solve(data, ...)
         x$setinverse(inv)
-        
         inv
-        
 }
+
+
+a <- makeCacheMatrix(matrix(2:5, nrow = 2, ncol = 2))
+a$get()
+a$setinverse(matrix(7:10, nrow = 2, ncol = 2))
+a$getinverse()
+cacheSolve(a)
+
+b <- makeCacheMatrix(matrix(1:4, nrow = 2, ncol = 2))
+cacheSolve(b)
